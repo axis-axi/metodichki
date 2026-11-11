@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Методички Надежды Кухтиной</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;500;600&family=Marck+Script&display=swap">
+<style>
+/* Layout: фирменный стиль Надежды - молочный фон, вино и золото, прямые углы, разделы-полки с карточками методичек */
+:root{--bg:#F8F3EA;--card:#FCF8F1;--ink:#3A2A22;--muted:#7C6B5C;--line:#DCCBAA;--wine:#5E1A1E;--gold:#C6A15B;--gold2:#A8823C;--band:#5E1A1E;--band-ink:#F6E9D6;--band-gold:#E7D3A8;
+--display:"Playfair Display",Georgia,serif;--body:"Montserrat",system-ui,sans-serif;--script:"Marck Script","Segoe Script",cursive}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#2A0B0E;--card:#3B0E12;--ink:#F6E9D6;--muted:#CDB48A;--line:#5E3428;--wine:#E7D3A8;--gold:#C6A15B;--gold2:#C6A15B;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#2A0B0E;--card:#3B0E12;--ink:#F6E9D6;--muted:#CDB48A;--line:#5E3428;--wine:#E7D3A8;--gold:#C6A15B;--gold2:#C6A15B;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:34px}
+header{display:flex;flex-direction:column;gap:10px}
+.kick{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2)}
+h1{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.022em;color:var(--wine);font-size:clamp(28px,6vw,46px);line-height:1.08;margin:0;text-wrap:balance}
+h1 em{display:block;font-family:var(--script);font-style:normal;text-transform:none;letter-spacing:0;color:var(--gold2);font-size:clamp(22px,4.4vw,32px);margin-top:6px}
+.orn{display:flex;align-items:center;gap:12px;color:var(--gold);max-width:300px}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.6}
+.lead{max-width:64ch;margin:0;color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--wine);border:1px solid var(--gold);padding:8px 12px;text-decoration:none}
+.links a:hover,.links a:focus-visible{background:var(--gold);color:#3B0E12}
+section{display:flex;flex-direction:column;gap:12px}
+h2{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.022em;color:var(--wine);font-size:clamp(18px,3.4vw,23px);margin:0;padding-bottom:8px;border-bottom:1px solid var(--gold);display:flex;align-items:baseline;gap:10px}
+h2 small{font-family:var(--body);font-size:12px;color:var(--gold2);letter-spacing:.1em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.item{display:flex;flex-direction:column;gap:3px;background:var(--card);border:1px solid var(--line);padding:14px 16px;text-decoration:none;color:var(--ink);min-width:0}
+.item:hover,.item:focus-visible{border-color:var(--gold);outline:none}
+.eb{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
+.tt{font-family:var(--display);font-size:18px;color:var(--wine);line-height:1.2}
+.sb{font-size:13px;color:var(--muted)}
+.mt{font-size:11.5px;color:var(--gold2);margin-top:6px;font-variant-numeric:tabular-nums}
+footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:center}
+#viewer{position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.vbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;background:var(--bg);border-bottom:1px solid var(--gold);
+  padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
+#vclose{font:inherit;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--wine);background:transparent;border:1px solid var(--gold);padding:8px 12px;cursor:pointer;flex:none}
+#vclose:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.vtitle{font-family:var(--display);color:var(--wine);font-size:16px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vcount{font-size:12px;color:var(--gold2);flex:none}
+.vpages{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px;padding:14px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+.pg{position:relative;width:100%;aspect-ratio:148/210;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold2)}
+.pg canvas{width:100%;height:100%;display:block}
+.plink{position:absolute;display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="kick">клуб Точка опоры · 48 методичек · 1912 страниц</span>
+  <h1>Методички <em>в новом оформлении</em></h1>
+  <div class="orn" aria-hidden="true">✦</div>
+  <p class="lead">Все материалы в одном стиле: винная обложка, колонтитул с каналом на каждой странице, в конце калькулятор матрицы, канал и клуб с QR-кодами</p>
+  <div class="links"><a href="https://t.me/nadin_matrix" target="_blank" rel="noopener">Канал</a><a href="https://matrica.nadezhdakukhtina.ru" target="_blank" rel="noopener">Калькулятор</a><a href="https://tochka-opory.lpxl.ru/podpiska" target="_blank" rel="noopener">Клуб</a></div>
+</header>
+<section><h2>Основы матрицы <small>6</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/47-raschet-osnovnyh-tochek-matritsy.pdf" data-title="Расчёт основных точек матрицы" data-pages="6">
+  <span class="eb">Методичка</span>
+  <span class="tt">Расчёт основных точек матрицы</span>
+  <span class="sb">личный и родовой квадрат</span>
+  <span class="mt">6 стр · 0.3 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/29-kniga-kurs-metod-poznaniya-matritsa-sudby.pdf" data-title="Метод познания Матрица судьбы" data-pages="318">
+  <span class="eb">Книга-курс</span>
+  <span class="tt">Метод познания Матрица судьбы</span>
+  <span class="sb">диагностика личности, методическое пособие</span>
+  <span class="mt">318 стр · 3.4 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/46-rabochaya-tetrad-k-kursu-po-matritse-sudby.pdf" data-title="Рабочая тетрадь" data-pages="32">
+  <span class="eb">Workbook</span>
+  <span class="tt">Рабочая тетрадь</span>
+  <span class="sb">к курсу по матрице судьбы</span>
+  <span class="mt">32 стр · 0.6 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/27-zona-komforta.pdf" data-title="Зона комфорта" data-pages="13">
+  <span class="eb">Методичка</span>
+  <span class="tt">Зона комфорта</span>
+  <span class="sb">точка Д в матрице судьбы</span>
+  <span class="mt">13 стр · 0.2 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/26-zadachi-dushi-tochka-v.pdf" data-title="Задачи души. Точка В" data-pages="20">
+  <span class="eb">Методичка</span>
+  <span class="tt">Задачи души. Точка В</span>
+  <span class="sb">по архетипам</span>
+  <span class="mt">20 стр · 0.2 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/43-ezotericheskie-talanty.pdf" data-title="Эзотерические таланты" data-pages="24">
+  <span class="eb">Методичка</span>
+  <span class="tt">Эзотерические таланты</span>
+  <span class="sb">в матрице судьбы</span>
+  <span class="mt">24 стр · 5.6 МБ · читать</span>
+</a></div></section><section><h2>22 архетипа <small>22</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/01-arhetip-01-mag.pdf" data-title="Маг" data-pages="10">
+  <span class="eb">Архетип 1</span>
+  <span class="tt">Маг</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">10 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/11-arhetip-02-zhritsa.pdf" data-title="Жрица" data-pages="7">
+  <span class="eb">Архетип 2</span>
+  <span class="tt">Жрица</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">7 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/15-arhetip-03-imperatritsa.pdf" data-title="Императрица" data-pages="10">
+  <span class="eb">Архетип 3</span>
+  <span class="tt">Императрица</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">10 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/16-arhetip-04-imperator.pdf" data-title="Император" data-pages="12">
+  <span class="eb">Архетип 4</span>
+  <span class="tt">Император</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">12 стр · 0.2 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/17-arhetip-05-ierofant.pdf" data-title="Иерофант" data-pages="8">
+  <span class="eb">Архетип 5</span>
+  <span class="tt">Иерофант</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">8 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/18-arhetip-06-vlyublennye.pdf" data-title="Влюблённые" data-pages="10">
+  <span class="eb">Архетип 6</span>
+  <span class="tt">Влюблённые</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">10 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/19-arhetip-07-kolesnitsa.pdf" data-title="Колесница" data-pages="8">
+  <span class="eb">Архетип 7</span>
+  <span class="tt">Колесница</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">8 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/20-arhetip-08-spravedlivost.pdf" data-title="Справедливость" data-pages="7">
+  <span class="eb">Архетип 8</span>
+  <span class="tt">Справедливость</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">7 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/21-arhetip-09-otshelnik.pdf" data-title="Отшельник" data-pages="9">
+  <span class="eb">Архетип 9</span>
+  <span class="tt">Отшельник</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">9 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/02-arhetip-10-koleso-fortuny.pdf" data-title="Колесо фортуны" data-pages="8">
+  <span class="eb">Архетип 10</span>
+  <span class="tt">Колесо фортуны</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">8 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/03-arhetip-11-sila.pdf" data-title="Сила" data-pages="8">
+  <span class="eb">Архетип 11</span>
+  <span class="tt">Сила</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">8 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/04-arhetip-12-inoe-videnie.pdf" data-title="Иное видение" data-pages="11">
+  <span class="eb">Архетип 12</span>
+  <span class="tt">Иное видение</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">11 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/05-arhetip-13-transformatsiya.pdf" data-title="Трансформация" data-pages="10">
+  <span class="eb">Архетип 13</span>
+  <span class="tt">Трансформация</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">10 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/25-arhetip-14-umerennost.pdf" data-title="Умеренность" data-pages="9">
+  <span class="eb">Архетип 14</span>
+  <span class="tt">Умеренность</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">9 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/06-arhetip-15-dyavol.pdf" data-title="Дьявол" data-pages="10">
+  <span class="eb">Архетип 15</span>
+  <span class="tt">Дьявол</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">10 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/07-arhetip-16-bashnya.pdf" data-title="Башня" data-pages="7">
+  <span class="eb">Архетип 16</span>
+  <span class="tt">Башня</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">7 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/08-arhetip-17-zvezda.pdf" data-title="Звезда" data-pages="9">
+  <span class="eb">Архетип 17</span>
+  <span class="tt">Звезда</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">9 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/09-arhetip-18-luna.pdf" data-title="Луна" data-pages="7">
+  <span class="eb">Архетип 18</span>
+  <span class="tt">Луна</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">7 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/10-arhetip-19-solntse.pdf" data-title="Солнце" data-pages="9">
+  <span class="eb">Архетип 19</span>
+  <span class="tt">Солнце</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">9 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/12-arhetip-20-sud.pdf" data-title="Суд" data-pages="7">
+  <span class="eb">Архетип 20</span>
+  <span class="tt">Суд</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">7 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/13-arhetip-21-mir.pdf" data-title="Мир" data-pages="8">
+  <span class="eb">Архетип 21</span>
+  <span class="tt">Мир</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">8 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/14-arhetip-22-shut.pdf" data-title="Шут" data-pages="8">
+  <span class="eb">Архетип 22</span>
+  <span class="tt">Шут</span>
+  <span class="sb">энергия в плюсе и в минусе</span>
+  <span class="mt">8 стр · 0.1 МБ · читать</span>
+</a></div></section><section><h2>Деньги <small>2</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/28-denezhnyy-kod.pdf" data-title="Денежный код" data-pages="18">
+  <span class="eb">Методичка</span>
+  <span class="tt">Денежный код</span>
+  <span class="sb">расчёт и практики активации</span>
+  <span class="mt">18 стр · 0.2 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/41-tochka-l-denezhnaya-liniya.pdf" data-title="Точка Л" data-pages="16">
+  <span class="eb">Денежный канал</span>
+  <span class="tt">Точка Л</span>
+  <span class="sb">денежная линия, вход</span>
+  <span class="mt">16 стр · 0.2 МБ · читать</span>
+</a></div></section><section><h2>Отношения и совместимость <small>6</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/40-tochka-k-kanal-otnosheniy.pdf" data-title="Точка К" data-pages="9">
+  <span class="eb">Канал отношений</span>
+  <span class="tt">Точка К</span>
+  <span class="sb">что блокирует гармоничные отношения</span>
+  <span class="mt">9 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/23-liniya-otnosheniy.pdf" data-title="Линия отношений" data-pages="26">
+  <span class="eb">Методичка</span>
+  <span class="tt">Линия отношений</span>
+  <span class="sb">энергии на линии отношений</span>
+  <span class="mt">26 стр · 0.3 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/39-matritsa-sovmestimosti.pdf" data-title="Матрица совместимости" data-pages="332">
+  <span class="eb">Методичка</span>
+  <span class="tt">Матрица совместимости</span>
+  <span class="sb">трактовка энергий на разных позициях</span>
+  <span class="mt">332 стр · 4.7 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/22-matritsa-sovmestimosti-s-nazvaniyami-energiy.pdf" data-title="Матрица совместимости" data-pages="343">
+  <span class="eb">Методичка</span>
+  <span class="tt">Матрица совместимости</span>
+  <span class="sb">трактовка энергий на разных позициях, версия с названиями энергий</span>
+  <span class="mt">343 стр · 5.5 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/37-sovmestimost-prezentatsiya.pdf" data-title="Совместимость" data-pages="49">
+  <span class="eb">Презентация</span>
+  <span class="tt">Совместимость</span>
+  <span class="sb">матрица пары</span>
+  <span class="mt">49 стр · 4.9 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/38-sovmestimost-primer.pdf" data-title="Совместимость" data-pages="20">
+  <span class="eb">Пример разбора</span>
+  <span class="tt">Совместимость</span>
+  <span class="sb">разбор пары на примере</span>
+  <span class="mt">20 стр · 0.3 МБ · читать</span>
+</a></div></section><section><h2>Род <small>2</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/36-rodovoy-kvadrat.pdf" data-title="Родовой квадрат" data-pages="27">
+  <span class="eb">Род</span>
+  <span class="tt">Родовой квадрат</span>
+  <span class="sb">родовые программы в матрице</span>
+  <span class="mt">27 стр · 0.4 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/32-perekrytie.pdf" data-title="Перекрытие" data-pages="16">
+  <span class="eb">Род</span>
+  <span class="tt">Перекрытие</span>
+  <span class="sb">мужская и женская линии рода</span>
+  <span class="mt">16 стр · 0.4 МБ · читать</span>
+</a></div></section><section><h2>Прогностика <small>7</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/34-prognostika-v-matritse-sudby-prezentatsiya.pdf" data-title="Прогностика в матрице судьбы" data-pages="21">
+  <span class="eb">Презентация</span>
+  <span class="tt">Прогностика в матрице судьбы</span>
+  <span class="sb">энергии периодов и циклов</span>
+  <span class="mt">21 стр · 3.2 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/35-rasshifrovka-energiy-v-prognostike.pdf" data-title="Расшифровка энергий в прогностике" data-pages="164">
+  <span class="eb">Прогностика</span>
+  <span class="tt">Расшифровка энергий в прогностике</span>
+  <span class="sb">все 22 энергии</span>
+  <span class="mt">164 стр · 8.3 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/33-rasshifrovka-energii-v-prognostike-primer.pdf" data-title="Расшифровка энергии в прогностике" data-pages="10">
+  <span class="eb">Пример расчёта</span>
+  <span class="tt">Расшифровка энергии в прогностике</span>
+  <span class="sb">разбор на примере</span>
+  <span class="mt">10 стр · 0.5 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/30-karmicheskie-hvosty-v-prognoze-na-god.pdf" data-title="Кармические хвосты в прогнозе на год" data-pages="94">
+  <span class="eb">Прогностика</span>
+  <span class="tt">Кармические хвосты в прогнозе на год</span>
+  <span class="sb">расшифровка в расчёте на год</span>
+  <span class="mt">94 стр · 1.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/31-karmicheskiy-hvost-v-prognostike-primer.pdf" data-title="Кармический хвост в прогностике" data-pages="7">
+  <span class="eb">Пример расчёта</span>
+  <span class="tt">Кармический хвост в прогностике</span>
+  <span class="sb">разбор на примере</span>
+  <span class="mt">7 стр · 0.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/45-energiya-dnya.pdf" data-title="Энергия дня" data-pages="62">
+  <span class="eb">Методичка</span>
+  <span class="tt">Энергия дня</span>
+  <span class="sb">все 22 энергии</span>
+  <span class="mt">62 стр · 0.5 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/44-energiya-dnya-primer.pdf" data-title="Энергия дня" data-pages="7">
+  <span class="eb">Пример расчёта</span>
+  <span class="tt">Энергия дня</span>
+  <span class="sb">разбор на примере</span>
+  <span class="mt">7 стр · 0.1 МБ · читать</span>
+</a></div></section><section><h2>Практики и чтение <small>2</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/42-filmoterapiya.pdf" data-title="Фильмотерапия" data-pages="60">
+  <span class="eb">Практика</span>
+  <span class="tt">Фильмотерапия</span>
+  <span class="sb">фильмы для проработки энергий</span>
+  <span class="mt">60 стр · 9.1 МБ · читать</span>
+</a><a class="item" href="#" data-src="pdf/48-taro-ili-uchebnik-fiziki-atlantov.pdf" data-title="Таро или учебник физики Атлантов" data-pages="15">
+  <span class="eb">Интервью</span>
+  <span class="tt">Таро или учебник физики Атлантов</span>
+  <span class="sb">взгляд на Таро Бориса Моносова</span>
+  <span class="mt">15 стр · 0.2 МБ · читать</span>
+</a></div></section><section><h2>Для мастеров <small>1</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/24-algoritm-provedeniya-konsultatsii.pdf" data-title="Алгоритм проведения консультации" data-pages="11">
+  <span class="eb">Для мастеров</span>
+  <span class="tt">Алгоритм проведения консультации</span>
+  <span class="sb">по методу Матрица судьбы</span>
+  <span class="mt">11 стр · 0.2 МБ · читать</span>
+</a></div></section>
+<footer>С теплом, Надежда</footer>
+</div>
+<div id="viewer" hidden>
+  <div class="vbar">
+    <button id="vclose" type="button" aria-label="Закрыть">← Назад</button>
+    <div class="vtitle" id="vtitle"></div>
+    <div class="vcount" id="vcount"></div>
+  </div>
+  <div class="vpages" id="vpages"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+<script>
+(function(){
+  var V=document.getElementById('viewer'), P=document.getElementById('vpages'), T=document.getElementById('vtitle'), C=document.getElementById('vcount');
+  var doc=null, io=null, token=0, scrollY=0;
+  function close(){ token++; if(io) io.disconnect(); if(doc){doc.destroy();doc=null;} P.innerHTML=''; V.hidden=true; document.body.style.overflow=''; window.scrollTo(0,scrollY); }
+  document.getElementById('vclose').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !V.hidden) close(); });
+  function renderPage(n, holder, my){
+    doc.getPage(n).then(function(page){
+      if(my!==token) return;
+      var w=holder.clientWidth, base=page.getViewport({scale:1}), dpr=Math.min(window.devicePixelRatio||1,2.5);
+      var vp=page.getViewport({scale:w/base.width*dpr});
+      var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+      page.render({canvasContext:c.getContext('2d'), viewport:vp}).promise.then(function(){
+        if(my!==token) return; holder.innerHTML=''; holder.appendChild(c);
+        // ссылки страницы поверх картинки
+        page.getAnnotations().then(function(an){
+          an.forEach(function(a){ if(a.subtype!=='Link'||(!a.url&&!a.dest)) return;
+            var r=pdfjsLib.Util.normalizeRect(a.rect), s=w/base.width;
+            var l=document.createElement('a'); l.className='plink';
+            if(a.url){ l.href=a.url; l.target='_blank'; l.rel='noopener'; }
+            else { l.href='#'; l.addEventListener('click', function(ev){ ev.preventDefault(); goDest(a.dest); }); }
+            l.style.left=(r[0]*s)+'px'; l.style.top=((base.height-r[3])*s)+'px'; l.style.width=((r[2]-r[0])*s)+'px'; l.style.height=((r[3]-r[1])*s)+'px';
+            holder.appendChild(l); });
+        });
+      });
+    });
+  }
+  // переход по ссылке внутри документа (оглавление, к оглавлению)
+  function goDest(dest){
+    if(!doc) return;
+    (typeof dest==='string' ? doc.getDestination(dest) : Promise.resolve(dest)).then(function(d){
+      if(!d) return; return (typeof d[0]==='number') ? d[0] : doc.getPageIndex(d[0]);
+    }).then(function(i){ if(i==null) return; var h=P.children[i]; if(h) V.scrollTop=h.offsetTop-V.querySelector('.vbar').offsetHeight-8; });
+  }
+  function open(src,title,pages){
+    scrollY=window.scrollY; var my=++token;
+    T.textContent=title; C.textContent='загружаю…'; P.innerHTML=''; V.hidden=false; document.body.style.overflow='hidden'; V.scrollTop=0;
+    pdfjsLib.getDocument(src).promise.then(function(d){
+      if(my!==token){ d.destroy(); return; }
+      doc=d; C.textContent=d.numPages+' стр';
+      io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting && !e.target.dataset.done){ e.target.dataset.done='1'; renderPage(+e.target.dataset.n, e.target, my); } }); }, {root:V, rootMargin:'1200px 0px'});
+      for(var i=1;i<=d.numPages;i++){ var h=document.createElement('div'); h.className='pg'; h.dataset.n=i; h.innerHTML='<span>'+i+'</span>'; P.appendChild(h); io.observe(h); }
+    }).catch(function(){ if(my===token) C.textContent='не открылось, попробуйте ещё раз'; });
+  }
+  document.querySelectorAll('.item').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); open(a.dataset.src, a.dataset.title, a.dataset.pages); }); });
+})();
+</script>
+</body>
+</html>
