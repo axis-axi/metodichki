@@ -350,6 +350,18 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
       if(!d) return; return (typeof d[0]==='number') ? d[0] : doc.getPageIndex(d[0]);
     }).then(function(i){ if(i==null) return; var h=P.children[i]; if(h) V.scrollTop=h.offsetTop-V.querySelector('.vbar').offsetHeight-8; });
   }
+  // скачивание: внутри Claude через downloads, на обычном сайте простой ссылкой
+  var dlNs=null, dlBusy=false;
+  try{ if(window.claude && window.claude.use){ window.claude.use('downloads').then(function(n){ dlNs=n; }, function(){}); } }catch(e){}
+  document.getElementById('vdl').addEventListener('click', function(e){
+    if(!dlNs) return;
+    e.preventDefault(); if(dlBusy) return; dlBusy=true;
+    var a=this, old=a.textContent; a.textContent='Готовлю…';
+    fetch(a.getAttribute('href')).then(function(r){ return r.blob(); })
+      .then(function(b){ return dlNs.save({filename:a.getAttribute('download'), data:b}); })
+      .catch(function(){})
+      .then(function(){ a.textContent=old; dlBusy=false; });
+  });
   function open(src,title,pages){
     scrollY=window.scrollY; var my=++token;
     var dl=document.getElementById('vdl'); dl.href=src; dl.setAttribute('download', title+'.pdf');
