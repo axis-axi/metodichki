@@ -41,6 +41,9 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
   padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
 #vclose{font:inherit;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--wine);background:transparent;border:1px solid var(--gold);padding:8px 12px;cursor:pointer;flex:none}
 #vclose:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.vdl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#3B0E12;background:var(--gold);border:1px solid var(--gold);padding:8px 10px;text-decoration:none;flex:none;white-space:nowrap}
+.vdl:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+@media (max-width:420px){.vcount{display:none}}
 .vtitle{font-family:var(--display);color:var(--wine);font-size:16px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vcount{font-size:12px;color:var(--gold2);flex:none}
 .vpages{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px;padding:14px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
@@ -55,7 +58,7 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
   <span class="kick">клуб Точка опоры · 48 методичек · 1912 страниц</span>
   <h1>Методички <em>в новом оформлении</em></h1>
   <div class="orn" aria-hidden="true">✦</div>
-  <p class="lead">Все материалы в одном стиле: винная обложка, колонтитул с каналом на каждой странице, в конце калькулятор матрицы, канал и клуб с QR-кодами</p>
+  <p class="lead">Все материалы в одном стиле: винная обложка, колонтитул с каналом на каждой странице, в конце калькулятор матрицы, канал и клуб с QR-кодами. Откройте методичку и нажмите Скачать PDF, чтобы сохранить её себе</p>
   <div class="links"><a href="https://t.me/nadin_matrix" target="_blank" rel="noopener">Канал</a><a href="https://matrica.nadezhdakukhtina.ru" target="_blank" rel="noopener">Калькулятор</a><a href="https://tochka-opory.lpxl.ru/podpiska" target="_blank" rel="noopener">Клуб</a></div>
 </header>
 <section><h2>Основы матрицы <small>6</small></h2><div class="grid"><a class="item" href="#" data-src="pdf/47-raschet-osnovnyh-tochek-matritsy.pdf" data-title="Расчёт основных точек матрицы" data-pages="6">
@@ -67,7 +70,7 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
   <span class="eb">Книга-курс</span>
   <span class="tt">Метод познания Матрица судьбы</span>
   <span class="sb">диагностика личности, методическое пособие</span>
-  <span class="mt">318 стр · 3.4 МБ · читать</span>
+  <span class="mt">318 стр · 3.3 МБ · читать</span>
 </a><a class="item" href="#" data-src="pdf/46-rabochaya-tetrad-k-kursu-po-matritse-sudby.pdf" data-title="Рабочая тетрадь" data-pages="32">
   <span class="eb">Workbook</span>
   <span class="tt">Рабочая тетрадь</span>
@@ -306,6 +309,7 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
     <button id="vclose" type="button" aria-label="Закрыть">← Назад</button>
     <div class="vtitle" id="vtitle"></div>
     <div class="vcount" id="vcount"></div>
+    <a id="vdl" class="vdl" href="#" download>Скачать PDF</a>
   </div>
   <div class="vpages" id="vpages"></div>
 </div>
@@ -348,6 +352,7 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
   }
   function open(src,title,pages){
     scrollY=window.scrollY; var my=++token;
+    var dl=document.getElementById('vdl'); dl.href=src; dl.setAttribute('download', title+'.pdf');
     T.textContent=title; C.textContent='загружаю…'; P.innerHTML=''; V.hidden=false; document.body.style.overflow='hidden'; V.scrollTop=0;
     pdfjsLib.getDocument(src).promise.then(function(d){
       if(my!==token){ d.destroy(); return; }
