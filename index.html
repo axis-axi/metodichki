@@ -1,9 +1,5 @@
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Методички Надежды Кухтиной</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@400;500;600&family=Marck+Script&display=swap">
 <style>
@@ -13,7 +9,7 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#2A0B0E;--card:#3B0E12;--ink:#F6E9D6;--muted:#CDB48A;--line:#5E3428;--wine:#E7D3A8;--gold:#C6A15B;--gold2:#C6A15B;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#2A0B0E;--card:#3B0E12;--ink:#F6E9D6;--muted:#CDB48A;--line:#5E3428;--wine:#E7D3A8;--gold:#C6A15B;--gold2:#C6A15B;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
 .wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:34px}
 header{display:flex;flex-direction:column;gap:10px}
 .kick{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2)}
@@ -35,6 +31,12 @@ h2 small{font-family:var(--body);font-size:12px;color:var(--gold2);letter-spacin
 .tt{font-family:var(--display);font-size:18px;color:var(--wine);line-height:1.2}
 .sb{font-size:13px;color:var(--muted)}
 .mt{font-size:11.5px;color:var(--gold2);margin-top:6px;font-variant-numeric:tabular-nums}
+.rvgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.rv{margin:0;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);padding:14px 16px;font-size:14px;color:var(--ink);min-width:0}
+.reviews details{display:flex;flex-direction:column;gap:10px}
+.reviews summary{cursor:pointer;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--wine);border:1px solid var(--gold);padding:8px 12px;width:max-content;margin:2px 0 10px;list-style:none}
+.reviews summary::-webkit-details-marker{display:none}
+.reviews summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:center}
 #viewer{position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
 .vbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;background:var(--bg);border-bottom:1px solid var(--gold);
@@ -51,8 +53,6 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
 .pg canvas{width:100%;height:100%;display:block}
 .plink{position:absolute;display:block}
 </style>
-</head>
-<body>
 <div class="wrap">
 <header>
   <span class="kick">клуб Точка опоры · 48 методичек · 1912 страниц</span>
@@ -302,6 +302,7 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
   <span class="sb">по методу Матрица судьбы</span>
   <span class="mt">11 стр · 0.2 МБ · читать</span>
 </a></div></section>
+<section class="reviews"><h2>Что говорят ученицы</h2><div class="rvgrid"><blockquote class="rv">Я столько раз хотела понять нумерологию и сколько я купила книг, но так и не могла понять некоторые вещи! Но с вами все встало на свои места. Я всем про вас расскажу!</blockquote><blockquote class="rv">Я в восторге от методичек, и от подачи курса, это третий мой курс по матрице судьбы, но только тут такая структура, безумно благодарна за курс 😍</blockquote><blockquote class="rv">Особенно благодарна за курс! До этого проходила матрицу судьбы, но в работу её так и не взяла - было безумно много пробелов и вопросов. А курс от вас прошел с максимальной легкостью и пониманием информации! А информации было в разы больше, чем до этого я проходила. Спасибо вам большое за этот курс 🫶</blockquote></div><details><summary>Ещё отзывы</summary><div class="rvgrid"><blockquote class="rv">Буду рекомендовать Вас всем интересующимся. Очень ясно и чётко всё изложено, без лишней воды, всё структурировано и довольно точно 💎</blockquote><blockquote class="rv">За неделю прошла курс и записала конспект. Хотя давно его купила, начала изучать и потом бросила, а зря. Мне всё понравилось в вашем курсе. Структурно и подробно.</blockquote></div></details></section>
 <footer>С теплом, Надежда</footer>
 </div>
 <div id="viewer" hidden>
@@ -376,5 +377,3 @@ footer{font-family:var(--script);font-size:24px;color:var(--wine);text-align:cen
   document.querySelectorAll('.item').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); open(a.dataset.src, a.dataset.title, a.dataset.pages); }); });
 })();
 </script>
-</body>
-</html>
